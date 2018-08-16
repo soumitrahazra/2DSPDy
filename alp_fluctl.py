@@ -14,7 +14,7 @@ plt.rcParams.update(params)
 import matplotlib.cm as cmap
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import cartopy.crs as ccrs
-fia='/home/va/work/pap/stars/sth/ani/'
+fia='/home/user/work/pap/stars/sth/ani/'
 
 set_printoptions(precision=16)
 from axmat import *
