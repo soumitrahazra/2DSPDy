@@ -5,7 +5,7 @@ def facn(n):
     return gamma(n+1)
 
 def c(n):
-    return sqrt((2.*n+1.)/(2.*n*(n+1.)))
+    return sqrt((2.*n+1.)/(2.))
 def cnm(n):
     return sqrt((2.*n+1.)*n*(n+1.)/2.)
 
@@ -35,22 +35,23 @@ vlp=vectorize(legendre_p0)
 
 def legendre_pm(n,x):
     return c(n)*lpmn(1,n,x)[0][1][n]
+def legendre_p00(n,x):
+    return lpn(n,x)[0][n]
 
 vlpnc=vectorize(legendre_p)
 vlpn0=vectorize(legendre_p0)
 vlpn=vectorize(legendre_pm)
 vlpnm=vectorize(legendre_pm)
-
-def legendre_p00(n,x):
-    return lpn(n,x)[0][n]
 vlp00=vectorize(legendre_p00)
 
+##4pi normalization!
 def Lpnm(n,m,x):
+    mm=int(abs(m))
     mm=int(abs(m))
     if mm > n:
         ans=0
     else:
-        ans=cn(n,mm)*lpmn(mm,n,x)[0][mm][n]
+        ans=cn(n,mm)*lpmn(mm,n,x)[0][mm][n] #(-1.)**mm*sqrt(2.-d0)*
     return ans
 
 def Npnm(n,m,x):
@@ -120,7 +121,7 @@ vfa=vectorize(fa)
 vfe=vectorize(fe)  
 
 def bu(b):
-    if abs(b) <= .5:
+    if abs(b) <= 0.75:
         return 0.
     else:
         return b**2/(1+2*abs(b)**3)
