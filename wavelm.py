@@ -33,15 +33,12 @@ def bivariate_normal(X, Y, sigmax=1.0, sigmay=1.0,
 
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-#time0,sar0,g010,g020,g110,h110,g210,h210,g220,h220=transpose(loadtxt('m4-5l.txt'))
-#savetxt('mn',transpose([tr,pi*brf,g01,g02,g11,h11,g21,h21,g22,h22,bfe,bre])) #=(loadtxt('m0'))
-#tr,brf,g01,g02,g11,h11,g21,h21,g22,h22,bfe,bre=transpose(loadtxt('mn'))
 tr,brf,g01,g02,g11,h11,g21,h21,g22,h22,bfe,bre=(loadtxt('mbu'))
-#ts,brs,bfs,g01s,g02s=(loadtxt('d1h1b2f'))
-#savetxt('simple', transpose([ts,brs/72.,g01s,g02s,g0si]))
-
-#savetxt('m0p',transpose([time,g01,brf,g02,g11,h11,g21,h21,g22,h22,max(g01)*sin((time-1.25)/3.2+pi),sint]))
-#savetxt('mb',transpose([time,g01,brf,g02,g11,h11,g21,h21,g22,h22,max(g01)*sin((time)/3.2-1),sint,bre]))
+# tr -time in diffusive units
+# brf the mean density of the nonaxisymmetric radial magnetic field flux
+# bfe - the same for the toroidal magnetic field
+# bre - the same for the axisymmetric toroidal magnetic field
+# g01, g02, g11,h11,g21,h21,g22,h22 dipole, quadrupole, equatorial dipole,quadrupole
 
 Nc=len(tr)
 tm=tr[-1]*62/Nc
@@ -51,7 +48,7 @@ time=linspace(0,tm*Nc,Nc)
 #time1=linspace(0,tm1*Nc1,Nc1)
 sintt=bre-(max(bre)-min(bre[15000:]))*abs(sin((time)/3.25))+min(bre[15000:])
 plt.figure()
-lin0=plt.plot(time,bre,'k',time,brf,'r')
+lin0=plt.plot(time,bfe,'k',time,brf,'r')
               #time,(max(bre)-min(bre[15000:]))*abs(sin((time)/3.25))+min(bre[15000:]),'b',lw=2) #,time,bre,'r')
 plt.legend(lin0,['$\\overline{B_{\\phi}}$','$\\int \left|B_r\\right| dS$'], loc='auto', frameon=False)
 #plt.legend(lin0,['sin','axial','equa'], loc='auto', frameon=False)
