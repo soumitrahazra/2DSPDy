@@ -122,7 +122,7 @@ vfe=vectorize(fe)
 
 def bu(b):
     if abs(b) <= 0.5:
-        return 0.
+        return b**2/(1+2*abs(b)**3)
     else:
         return b**2/(1+2*abs(b)**3)
 
